@@ -1,0 +1,43 @@
+[server]
+listen = "0.0.0.0:8080"
+public_url = "http://localhost:8080"
+request_timeout_seconds = 300
+
+[auth]
+allow_anonymous_pull = true
+username = "nexup"
+# Set NEXUP_AUTH_PASSWORD when disabling anonymous pulls.
+dashboard_public = true
+# Set NEXUP_ADMIN_TOKEN when dashboard_public = false.
+
+[cache]
+path = "./data"
+metadata_ttl_seconds = 300
+serve_stale_on_error = true
+max_size_bytes = 53687091200
+cleanup_interval_seconds = 300
+max_metadata_bytes = 67108864
+
+[proxy]
+# Standard environment variables override these fields.
+# http_proxy = "http://proxy.example.com:3128"
+# https_proxy = "http://proxy.example.com:3128"
+# no_proxy = "localhost,127.0.0.1,.example.com"
+# ssl_cert_file = "/certs/corporate-ca.pem"
+
+[docker]
+enabled = true
+upstream = "https://registry-1.docker.io"
+# Prefer NEXUP_DOCKER_USERNAME and NEXUP_DOCKER_PASSWORD for credentials.
+
+[npm]
+enabled = true
+upstream = "https://registry.npmjs.org"
+artifact_hosts = []
+# NEXUP_NPM_TOKEN authenticates requests to the upstream origin only.
+
+[pypi]
+enabled = true
+upstream = "https://pypi.org/simple"
+artifact_hosts = ["files.pythonhosted.org"]
+# NEXUP_PYPI_TOKEN authenticates requests to the upstream origin only.

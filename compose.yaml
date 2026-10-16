@@ -1,0 +1,34 @@
+services:
+  nexup:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      NEXUP_PUBLIC_URL: ${NEXUP_PUBLIC_URL:-http://localhost:8080}
+      NEXUP_ALLOW_ANONYMOUS_PULL: ${NEXUP_ALLOW_ANONYMOUS_PULL:-true}
+      NEXUP_DASHBOARD_PUBLIC: ${NEXUP_DASHBOARD_PUBLIC:-true}
+      # Optional credentials, proxies and SSL_CERT_FILE are passed from your shell.
+      NEXUP_AUTH_PASSWORD:
+      NEXUP_ADMIN_TOKEN:
+      NEXUP_DOCKER_USERNAME:
+      NEXUP_DOCKER_PASSWORD:
+      NEXUP_NPM_TOKEN:
+      NEXUP_PYPI_TOKEN:
+      HTTP_PROXY:
+      HTTPS_PROXY:
+      NO_PROXY:
+      http_proxy:
+      https_proxy:
+      no_proxy:
+      SSL_CERT_FILE:
+    volumes:
+      - nexup-data:/data
+      # Corporate CA example (also set SSL_CERT_FILE=/certs/corporate-ca.pem):
+      # - ./corporate-ca.pem:/certs/corporate-ca.pem:ro
+      # Optional configuration:
+      # - ./nexup.local.toml:/etc/nexup.toml:ro
+    # command: ["serve", "--config", "/etc/nexup.toml"]
+    restart: unless-stopped
+    stop_grace_period: 60s
+volumes:
+  nexup-data:

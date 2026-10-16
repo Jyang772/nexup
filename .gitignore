@@ -1,0 +1,4 @@
+/target/
+/data/
+/nexup.local.toml
+.env

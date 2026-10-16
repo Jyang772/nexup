@@ -1,0 +1,8 @@
+target
+data
+.git
+.env
+nexup.local.toml
+tests
+*.pem
+*.key
